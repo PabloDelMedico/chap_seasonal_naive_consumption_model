@@ -1,0 +1,32 @@
+name: seasonal_naive_consumption
+
+uv_env: pyproject.toml
+
+target: consumption
+domain: health_supply
+required_covariates:
+  - stock_on_hand
+supported_period_type: month
+
+meta_data:
+  display_name: Seasonal naive consumption
+  description: >
+    Forecasts monthly consumption as the value of the same month one year earlier (or the
+    average of recent months when that value is missing). Uncertainty comes from the model's
+    own past seasonal errors. Missing entries and stock-out months are treated as not observed.
+  author: CHAP health_supply PoC
+  author_assessed_status: red
+
+entry_points:
+  train:
+    parameters:
+      train_data: str
+      model: str
+    command: "python train.py {train_data} {model}"
+  predict:
+    parameters:
+      historic_data: str
+      future_data: str
+      model: str
+      out_file: str
+    command: "python predict.py {model} {historic_data} {future_data} {out_file}"

@@ -1,0 +1,9 @@
+[project]
+name = "seasonal-naive-consumption-model"
+version = "0.1.0"
+description = "Seasonal naive monthly consumption model for CHAP"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "pandas",
+]
